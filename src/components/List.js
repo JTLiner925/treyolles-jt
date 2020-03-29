@@ -1,5 +1,5 @@
 import React from 'react';
-import Card from './components/Card.js';
+import Card from './Card.js';
 import './List.css';
 import { directive } from '@babel/types';
 
@@ -7,14 +7,26 @@ function List(props){
     const listHeader = `${props.lists.header}`
     return (
         <section className='List'>
-            <header>
-                {listHeader}
+            <header className='List-header'>
+                <h2>{props.header}</h2>
             </header>
             <div className='List-cards'>
-                {props.children}
+                {props.cards.map((card)=>
+                    <Card
+                        key={card.id}
+                        title={card.title}
+                        content={card.content}
+                    />
+                )}
+                <button
+                    type='button'
+                    className='List-add-button'
+                >
+                    + Add Random Card 
+                </button>
             </div>
         </section>
     );
 }
 
-// export default List;
+export default List;
