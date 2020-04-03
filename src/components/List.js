@@ -3,7 +3,7 @@ import Card from './Card.js';
 import './List.css';
 import { directive } from '@babel/types';
 
-function List(props){
+export default function List(props){
     return (
         <section className='List'>
             <header className='List-header'>
@@ -13,13 +13,15 @@ function List(props){
                 {props.cards.map((card)=>
                     <Card
                         key={card.id}
+                        id={card.id}
                         title={card.title}
                         content={card.content}
+                        onClickDelete={props.onClickDelete}
                     />
                 )}
                 <button
                     type='button'
-                    className='List-add-button'
+                    className='List-add-button'  onClick={() => props.onClickAdd(props.id)}
                 >
                     + Add Random Card 
                 </button>
@@ -28,4 +30,6 @@ function List(props){
     );
 }
 
-export default List;
+List.defaultProps = {
+onClickAdd: () => {},
+}
