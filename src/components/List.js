@@ -1,11 +1,27 @@
-import React from 'react';
-import Card from './Card.js';
-import './List.css';
-import { directive } from '@babel/types';
+import React from "react";
+import Card from "./Card.js";
+import "./List.css";
+// import { directive } from "@babel/types";
 
-export default function List(props){
-    return (
-       <div></div>
-    )
+export default function List(props) {
+  return (
+    <section className="List">
+      <header>{props.header}</header>
+      <div className="List-cards">
+        {props.cards.map(card => (
+          <Card 
+            key={card.id}
+            title={card.title}
+            content={card.content}
+          />
+        ))}
+        <button
+          type='button'
+          className='List-add-button'
+        >
+          + Add Random Card
+        </button>
+      </div>
+    </section>
+  );
 }
-
